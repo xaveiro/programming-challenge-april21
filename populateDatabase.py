@@ -27,7 +27,7 @@ try:
 
         cursor.execute('DROP TABLE IF EXISTS movies;')
         print('Creating movies table....')
-        cursor.execute("CREATE TABLE movies(id int AUTO_INCREMENT PRIMARY KEY,title varchar(255),movieId varchar(255),genre varchar(255),year varchar(255),createdAt varchar(255),updatedAt varchar(255))")
+        cursor.execute("CREATE TABLE movies(id int AUTO_INCREMENT PRIMARY KEY,title varchar(255),movieId int,genre varchar(255),year int,createdAt varchar(255),updatedAt varchar(255))")
         print("Table is created....")
         sql = "INSERT INTO " + database + ".movies (title,movieId,genre,year) VALUES (%s,%s,%s,%s)"
         for i,row in treatingMovies.iterrows():
@@ -39,7 +39,7 @@ try:
 
         cursor.execute('DROP TABLE IF EXISTS ratings;')
         print('Creating rating movies table....')
-        cursor.execute("CREATE TABLE ratings(movieId varchar(255), avgRating float)")
+        cursor.execute("CREATE TABLE ratings(id int AUTO_INCREMENT PRIMARY KEY, movieId int, avgRating float,createdAt varchar(255),updatedAt varchar(255))")
         print("Table is created....")
         sql = "INSERT INTO " + database + ".ratings (movieId,avgRating) VALUES (%s,%s)"
         for i,row in treatingRatings.iterrows():

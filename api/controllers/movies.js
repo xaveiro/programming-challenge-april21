@@ -1,5 +1,6 @@
 const models = require("../models/index");
 const Movies = models.movies;
+const Sequelize = require("sequelize")
 
 async function getMoviesByYearAndGenre(req,res){
     const movies = await Movies.findAll({
@@ -11,5 +12,21 @@ async function getMoviesByYearAndGenre(req,res){
     res.json(movies);
 };
 
-module.exports = {getMoviesByYearAndGenre}
+async function getGenres(req,res){
+    const genres = await Movies.findAll({
+        attributes: [
+            [Sequelize.fn('DISTINCT', Sequelize.col('genre')), 'genre']
+        ]
+    })
+
+    const response = [];
+    genres.forEach((g)=>{
+        response.push(g.genre)
+    })
+
+
+    res.json(response);
+}
+
+module.exports = {getMoviesByYearAndGenre,getGenres}
 
