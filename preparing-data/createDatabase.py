@@ -4,7 +4,7 @@ from mysql.connector import Error
 
 if(len(sys.argv) != 5):
 		print("Error! This program should run like this:")
-		print("python3 populateDatabase.py <host> <user> <password> <database>")
+		print("python3 createdDatabase.py <host> <user> <password> <database>")
 		sys.exit(1)
 
 try:
