@@ -27,7 +27,7 @@ try:
 
         cursor.execute('DROP TABLE IF EXISTS movies;')
         print('Creating movies table....')
-        cursor.execute("CREATE TABLE movies(title varchar(255),movieId varchar(255),genre varchar(255),year varchar(255))")
+        cursor.execute("CREATE TABLE movies(id int AUTO_INCREMENT PRIMARY KEY,title varchar(255),movieId varchar(255),genre varchar(255),year varchar(255),createdAt varchar(255),updatedAt varchar(255))")
         print("Table is created....")
         sql = "INSERT INTO " + database + ".movies (title,movieId,genre,year) VALUES (%s,%s,%s,%s)"
         for i,row in treatingMovies.iterrows():
