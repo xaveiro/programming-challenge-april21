@@ -1,52 +1,92 @@
 # Programming Challenge
 
-Congratulations on being selected to participate in our technical test. It consists of a programming challenge and it will address different skills. Read the instructions carefully and we wish you the best of luck.
+## Description
 
-## Before You Start
+This application consists of a programming challenge for the vacancy of developer at SIDIA, where such application will list films given a year and genre and the top k films well evaluated in descending order.
 
-Fork this repository and once you have finished your challenge, grant access to the Github user "kavlac". Upload all your deliverables to your forked repository. We will use it to evaluate your test.
+For the preparation of data, python was used due to it's fast and simplified use for such operations. MySQL was the database of choice, because of my familiarity with it. Also, in the backend, Express and Sequelize, to create the routes (MVC model) and manage the database, respectively. And finally, in the frontend, I've used node with react to easily create a graphical interface.
 
-## Introduction
+## How to run
 
-We want you to develop a project that makes uses of the [MovieLens](https://grouplens.org/datasets/movielens/) dataset. It consists of three goals and the details on each one of them is given below.
 
-## Preparing the Data
+### Step 1 - Prepare Data
 
-The first goal of this challenge is to obtain and prepare the data you will work with.
+#### Dependencies
 
-In order to do so, you must download a [publicly available dataset](http://files.grouplens.org/datasets/movielens/ml-25m.zip). You can find the details about what data is stored and how it is structured in the [instructions](http://files.grouplens.org/datasets/movielens/ml-25m-README.html).
+- pandas (pip3 install pandas)
+- mysql (pip3 install mysql-connector-python)
 
-Then, you are asked to write a program to read the input files for the dataset and create a database out of it. You can choose to use the database in memory, in files, or in a database management system, as long as you process and consume this data in the upcoming parts.
+#### How to prepare
 
-## Making the Data Available
+ - You must first download the [publicly available dataset](http://files.grouplens.org/datasets/movielens/ml-25m.zip);
 
-The second goal of this challenge is to make the processed data available for consumption.
+ - Extract the downloaded file and copy the files ```movies.csv``` and ```ratings.csv``` to the ```preparing-data``` folder;
 
-To do such, you must implement a REST API and it should provide the following methods:
-- List movies by year and genre: given a year and a genre, we want to know what movies match the given year and are of the given genre;
-- List top K rated movies: given a number K, we want to know the best K rated movies in descending order.
+ - Execute  ```python3 treatingData.py```.
 
-## Consuming the Data
+After the treatmentData has finished running
 
-The third goal of this challenge is to consume the methods of the REST API.
+- Execute ```python3 createdDatabase.py your_host user_name password database_name ```,
 
-Thus, you are asked to implement a client application that accesses such an API. It must have a graphical interface to interact with users to consume the three methods above. It is up to you how to design the user interface, as long as it is usable.
+After the createdDatabase has finished running 
 
-## Deliverables
+- Execute ```python3 populateDatabase.py your_host user_name password database_name ```.
 
-You must provide the following artifacts:
-- The source-code of the programs that you implemented;
-- A set of instructions on how to prepare the environment, build the programs, run each part of the challenge, and how to use your project;
-- Comments on what technologies and patterns you used and the reasons to do so, as well as the decisions you made throughout the challenge;
-- Any other artifact you find relevant for your overall evaluation.
 
-## Tips
+### Step 2 - Run the API
 
-- Make sure your instructions are easy to follow and that each step works as expected;
-- Our main environment is Windows, so please make sure that your solution works on it;
-- If you want, you can show us how you can set up your project using Docker;
-- We suggest you implement the challenge using the following languages (you can use more than one of them if you want): C#, Java, and/or JavaScript;
-- Testing is more than welcome;
-- Show us everything you know about best practices in Git;
-- Think carefully about your code quality, in terms of maintainability, readability, and simplicity;
-- Do not overengineer your solution.
+#### Dependecies
+
+- Node (currently using v10.19.0)
+
+
+#### How to run
+
+- Firstly, run ```npm install``` inside the /api folder, to install the project's dependecies;
+- Then, correctly input your database configuration inside /api/config/database.json. It should be the same as the one you created in the first step (preparing data);
+EXAMPLE:
+```javascript
+{
+  "development": { 
+    "username": "userExample",
+    "password": "example123",
+    "database": "example",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
+```
+
+- Secondly, run ```npm start``` to initiate the API.
+
+- Done.
+
+
+### Step 3 - Run the app
+
+#### Dependecies
+
+- Node (currently using v10.19.0)
+
+#### How to run
+
+- Firstly, run ```npm install``` inside the /api folder, to install the project's dependecies;
+
+- Secondly, run ```npm start``` to initiate the app;
+
+- Then, you should be able to access by going to ```http://localhost:3001```
+
+- Done.
+
+## Screenshots 
+### Initial
+
+![Initial](app_images/initial.png)
+
+### List movies by year and genre
+
+![YearAndGenre](app_images/yearandgenre.png)
+
+### List top k rated movies
+
+![YearAndGenre](app_images/topk.png)
