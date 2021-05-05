@@ -70,7 +70,7 @@ EXAMPLE:
 
 #### How to run
 
-- Firstly, run ```npm install``` inside the /api folder, to install the project's dependecies;
+- Firstly, run ```npm install``` inside the /front folder, to install the project's dependecies;
 
 - Secondly, run ```npm start``` to initiate the app;
 
